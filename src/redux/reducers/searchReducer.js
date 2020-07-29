@@ -1,7 +1,7 @@
 /** @flow */
 import {
   search as searchActionTypes
-} from '../../redux/actions/action-types'
+} from '../actions/action-types'
 
 
 /**

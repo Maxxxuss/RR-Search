@@ -19,8 +19,6 @@ const mapDispatchToProps = (dispatch) => ({
         state: nextState
      })),
      search: (resourceName) => dispatch (search(resourceName)),
-
-
 })
 
 export default connect(

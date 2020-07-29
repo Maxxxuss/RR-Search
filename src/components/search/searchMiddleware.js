@@ -1,7 +1,6 @@
 import {
-  ACTION,
-  SEARCH_API
-} from './constants'
+  search  as searchAction ,
+  } from '../../redux/actions/action-types'
 
 /**
  * Middleware for interacting with the search API
@@ -10,10 +9,10 @@ import {
 export default function searchMiddleware (search: Object): Function {
   return ({ dispatch }) => next => action => {
     const { payload } = action
-    if (action.type === SEARCH_API) {
+    if (action.type === searchAction) {
       const { method, args } = payload
       return search[method](...args)
-    } else if (action.type === ACTION) {
+    } else if (action.type === searchAction) {
       next(payload.action)
       return dispatch(payload.api)
     } else {

@@ -6,6 +6,7 @@ import {
 import createReducer from './create-reducer.js';
 
 
+
 const tabFactory = (title = 'New tab', isActive = false) => ({
     id: uuidv4(),
     title,

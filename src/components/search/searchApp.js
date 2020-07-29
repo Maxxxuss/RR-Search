@@ -1,13 +1,13 @@
 /** @flow */
 
-import { actions, dataSearchText, filteredIdArray, filteredIdList, immutableDataSearchText, immutableMap, map } from '../../redux/reducers/resources'
+import { actions } from '../../redux/reducers/resources'
+import { dataSearchText, filteredIdArray, filteredIdList, immutableDataSearchText, immutableMap, map} from '../../redux/selectors/ressource'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
-import   CardWrapper from './searchWebsite/components/Card/CardWrapper'
-import  Card  from './searchWebsite/components/Card/Card'
+import CardWrapper from './searchWebsite/components/Card/CardWrapper'
+import Card  from './searchWebsite/components/Card/Card'
 
 // import Footer from './components/Footer'
-import Header from './searchWebsite/components/Header/Header'
 import Immutable from 'immutable'
 import React from 'react'
 import Widget from './searchWebsite/components/Widget/Widget'
@@ -43,7 +43,6 @@ export function Application ({
 }) {
   return (
     <div>
-      {/* <Header/> */}
       <CardWrapper>
         <Card>
           <p>
@@ -109,7 +108,6 @@ export function Application ({
           />
         </Card>
       </CardWrapper>
-      {/* <Footer/> */}
     </div>
   )
 }

@@ -4,9 +4,7 @@ import { search as actions } from '../../redux/actions/action-types'
 
 import searchMiddleware from './searchMiddleware'
 import SearchApi from './SearchApi'
-import { Component } from 'react'
 
-import PropTypes from 'prop-types';
 
 export default function reduxSearch ({
   resourceIndexes = {},

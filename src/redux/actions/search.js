@@ -1,20 +1,5 @@
 import { search as actionTypes } from './action-types.js';
 
-// const searchFactory = () => {
-//     const {printed, raw } = Function ()
-//     return {
-//         method, 
-//         args, 
-//         resourceName, 
-//         resourceNames, 
-//         text, 
-//         result, 
-//     }
-// }
-
-
-
-
 export const searchAPI = (method, args) => {
     return (...args) => ({
         type: actionTypes.searchAPI, 
@@ -24,7 +9,6 @@ export const searchAPI = (method, args) => {
           }
     })
 }
-
 
 export function search (resourceName: string): Function {
   return function searchResource (text: string): Object {
@@ -43,22 +27,6 @@ export function search (resourceName: string): Function {
     }
   }
 }
-
-// export const createSearchAction = (resourceName, text) => {
-//       return {
-//         type: actionTypes.searchAction,
-//         payload: {
-//           api: performSearch(resourceName, text),
-//           action: {
-//             type: actionTypes.search,
-//             payload: {
-//               resourceName,
-//               text
-//           }
-//         }
-//       }
-//     }
-//   }
 
   export const receiveResult = (resourceName) => {
     return function receiveResultForResource (result) {
@@ -84,3 +52,5 @@ export const initializeResources = (resourceNames) => {
 export const defineIndex = searchAPI('defineIndex')
 export const indexResource = searchAPI('indexResource')
 export const performSearch = searchAPI('performSearch')
+
+

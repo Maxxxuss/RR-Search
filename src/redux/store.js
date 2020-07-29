@@ -31,7 +31,8 @@ export default () =>  {
     reduxSearch({
       resourceIndexes: {
         map: ['name', 'title'],
-        immutableMap: ['name', 'title']
+        immutableMap: ['name', 'title'],
+        notes: ['content']
       },
       resourceSelector: (resourceName, state) => {
         return state.resources.get(resourceName)

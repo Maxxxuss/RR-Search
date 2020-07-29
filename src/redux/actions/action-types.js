@@ -25,6 +25,12 @@ export const search ={
     defineIndex: '@@reduxSearch/defineIndex',
     indexResource: '@@reduxSearch/indexResource',
     performSearch: '@@reduxSearch/performSearch',
-
-
 }
+
+export const resource = {
+    clearData: 'reduxSearch/clearData',
+    clearImmutableData: 'reduxSearch/immutabelData',
+    setData: 'reduxSearch/setData',
+    setImmutabelData: 'reduxSearch/setImmutabelData'
+}
+
