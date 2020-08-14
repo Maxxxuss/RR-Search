@@ -32,7 +32,7 @@ export default () =>  {
       resourceIndexes: {
         map: ['name', 'title'],
         immutableMap: ['name', 'title'],
-        notes: ['content']
+        notesMap: ['name', 'title'],
       },
       resourceSelector: (resourceName, state) => {
         return state.resources.get(resourceName)

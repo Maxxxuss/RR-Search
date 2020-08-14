@@ -17,4 +17,8 @@ export const setImmutabelData = () => ({
     type: resActionTypes.setImmutabelData
 });
 
+export const setNotesData = () => ({
+    type: resActionTypes.setNotesData
+});
+
 

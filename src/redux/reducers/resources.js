@@ -10,7 +10,7 @@ import faker from 'faker'
 import Immutable from 'immutable'
 
 import {resource as resActionTypes, 
-         notes as noteActionTypes
+         notes as actionTypes
 
 } from '../actions/action-types'
 import notesReducer from './notes'
@@ -19,7 +19,8 @@ import notesReducer from './notes'
 
 export const State = Immutable.Record({
   map: Immutable.OrderedMap(),
-  immutableMap: Immutable.OrderedMap()
+  immutableMap: Immutable.OrderedMap(),
+  notesMap: Immutable.OrderedMap(),
 })
 
 
@@ -75,8 +76,31 @@ export const actions = {
     }
   },
 
+  generateNotesData () {
+    return (dispatch, getState) => {
+      dispatch(actions.clearData())
+
+      const notesData = {}
+      for (var i = 0; i < 10; i++) {
+        let id = faker.random.uuid()
+        notesData[id] = {
+          id: id,
+          name: faker.name.findName(),
+          title: faker.name.title()
+        }
+      }
+      dispatch({
+        type: resActionTypes.setNotesData,
+        payload: notesData
+      })
+    }
+  },
+
+
+
   searchData: createSearchAction('map'),
-  searchImmutableData: createSearchAction('immutableMap')
+  searchImmutableData: createSearchAction('immutableMap'),
+  searchNotes: createSearchAction('notesMap'),
 }
 
 export const actionHandlers = {
@@ -91,7 +115,16 @@ export const actionHandlers = {
   },
   [resActionTypes.setImmutabelData] (state, { payload }): State {
     return state.set('immutableMap', payload)
-  }
+  },
+  [resActionTypes.clearData] (state) {
+    return state.set('notesMap', {})
+  },
+  [resActionTypes.setNotesData] (state, { payload }): State {
+    return state.set('notesMap', payload)
+  },
+
+
+
 }
 
 export const reducer = (state = new State(), action)=> {

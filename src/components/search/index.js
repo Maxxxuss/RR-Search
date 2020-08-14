@@ -3,7 +3,7 @@ import {
   defaultSearchStateSelector,
   getSearchSelectors
 } from '../../redux/selectors/search'
-import {search, createSearchAction} from '../../redux/actions/search'
+import {search} from '../../redux/actions/search'
 import reduxSearch from './reduxSearch'
 import SearchApi from './SearchApi'
 import reducer from '../../redux/reducers/searchReducer'
@@ -14,7 +14,6 @@ export {
   getSearchSelectors,
   reduxSearch,
   reducer,
-  search,
   search as createSearchAction,
   SearchApi
 }

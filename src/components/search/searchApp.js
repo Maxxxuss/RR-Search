@@ -1,7 +1,7 @@
 /** @flow */
 
 import { actions } from '../../redux/reducers/resources'
-import { dataSearchText, filteredIdArray, filteredIdList, immutableDataSearchText, immutableMap, map} from '../../redux/selectors/ressource'
+import { dataSearchText, filteredIdArray, filteredIdList, immutableDataSearchText, immutableMap, map, notesMap, filteredIdNotesArray, notesDataSearchText} from '../../redux/selectors/ressource'
 import { connect } from 'react-redux'
 import { createSelector } from 'reselect'
 import CardWrapper from './searchWebsite/components/Card/CardWrapper'
@@ -26,8 +26,14 @@ Application.propTypes = {
   immutableDataSearchText: PropTypes.string.isRequired,
   immutableMap: PropTypes.any.isRequired,
   map: PropTypes.object.isRequired,
+  notesMap: PropTypes.object.isRequired,
   searchData: PropTypes.func.isRequired,
-  searchImmutableData: PropTypes.func.isRequired
+  searchImmutableData: PropTypes.func.isRequired, 
+  searchNotes: PropTypes.func.isRequired,
+  notesDataSearchText: PropTypes.string.isRequired,
+  filteredIdNotesArray: PropTypes.array.isRequired,
+  generateNotesData: PropTypes.func.isRequired,
+
 }
 export function Application ({
   dataSearchText,
@@ -38,8 +44,14 @@ export function Application ({
   immutableDataSearchText,
   immutableMap,
   map,
+  notesMap,
   searchData,
-  searchImmutableData
+  searchImmutableData,
+  searchNotes,
+  notesDataSearchText, 
+  filteredIdNotesArray, 
+  generateNotesData
+
 }) {
   return (
     <div>
@@ -107,20 +119,51 @@ export function Application ({
             title={'Array of Objects'}
           />
         </Card>
+              <Card>
+          <Widget
+            generateData={generateNotesData}
+            recordIds={filteredIdNotesArray}
+            recordsMap={notesMap}
+            rowRenderer={
+              index => {
+                const contact = notesMap[filteredIdNotesArray[index]]
+                return (
+                  <div
+                    key={index}
+                    className={styles.Row}
+                  >
+                    {/* <Highlighter
+                      highlightClassName={styles.Highlight}
+                      searchWords={dataSearchText.split(/\s+/)}
+                      textToHighlight={`${contact.name}, ${contact.title}`}
+                    /> */}
+                  </div>
+                )
+              }
+            }
+            searchData={searchNotes}
+            title={'Notes of Objects'}
+          />
+        </Card>
+
+
       </CardWrapper>
     </div>
   )
 }
 
 const selectors = createSelector(
-  [dataSearchText, filteredIdArray, filteredIdList, immutableDataSearchText, immutableMap, map],
-  (dataSearchText, filteredIdArray, filteredIdList, immutableDataSearchText, immutableMap, map) => ({
+  [dataSearchText, filteredIdArray, filteredIdList, immutableDataSearchText, immutableMap, map, notesMap, notesDataSearchText, filteredIdNotesArray],
+  (dataSearchText, filteredIdArray, filteredIdList, immutableDataSearchText, immutableMap, map, notesMap, notesDataSearchText, filteredIdNotesArray) => ({
     dataSearchText,
     filteredIdArray,
     filteredIdList,
     immutableDataSearchText,
     immutableMap,
-    map
+    map,
+    notesMap, 
+    filteredIdNotesArray,
+    notesDataSearchText
   })
 )
 
