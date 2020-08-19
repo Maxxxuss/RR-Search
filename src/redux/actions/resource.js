@@ -22,3 +22,13 @@ export const setNotesData = () => ({
 });
 
 
+export const addNotesData = (notesContent) => ({
+    type: resActionTypes.addNotesData, 
+    notesContent
+});
+
+export const updateNotesContent = (id, notesContent) => ({
+    type: resActionTypes.updateNotesContent, 
+    id, 
+    notesContent
+});

@@ -6,11 +6,13 @@ import Tabs from './containers/tabs.jsx';
 import SearchApp from './components/search/searchApp'
 
 
+
 const App = ({ activeTabId }) => (
     <Fragment>
         <div className="main__controls">
             <Controls activeTabId={activeTabId} />
         </div>
+
         <div className="main__body">
             <Tabs />
             <Notepad />

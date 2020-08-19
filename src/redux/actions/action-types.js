@@ -33,5 +33,6 @@ export const resource = {
     setData: 'reduxSearch/setData',
     setImmutabelData: 'reduxSearch/setImmutabelData',
     setNotesData: 'reduxSearch/setNotesData',
+    addNotesData: 'reduxSearch/addNotesData',
 }
 

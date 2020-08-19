@@ -14,6 +14,7 @@ import Widget from './searchWebsite/components/Widget/Widget'
 // import Highlighter from 'react-highlight-words'
 import styles from './Application.css'
 import PropTypes from 'prop-types';
+import ResControls from '../../containers/resControlls'
 
 
 
@@ -33,6 +34,9 @@ Application.propTypes = {
   notesDataSearchText: PropTypes.string.isRequired,
   filteredIdNotesArray: PropTypes.array.isRequired,
   generateNotesData: PropTypes.func.isRequired,
+  notesContent: PropTypes.string.isRequired,
+  addNotesData: PropTypes.func.isRequired,
+
 
 }
 export function Application ({
@@ -50,9 +54,16 @@ export function Application ({
   searchNotes,
   notesDataSearchText, 
   filteredIdNotesArray, 
-  generateNotesData
+  generateNotesData,
+  notesContent, 
+  addNotesData
 
-}) {
+})
+
+
+
+
+{
   return (
     <div>
       <CardWrapper>
@@ -132,19 +143,24 @@ export function Application ({
                     key={index}
                     className={styles.Row}
                   >
+                    
                     {/* <Highlighter
                       highlightClassName={styles.Highlight}
                       searchWords={dataSearchText.split(/\s+/)}
                       textToHighlight={`${contact.name}, ${contact.title}`}
                     /> */}
-                  </div>
+                  </div>  
+      
                 )
               }
+          
             }
             searchData={searchNotes}
             title={'Notes of Objects'}
           />
         </Card>
+        
+
 
 
       </CardWrapper>

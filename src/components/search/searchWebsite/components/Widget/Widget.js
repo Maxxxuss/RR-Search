@@ -8,9 +8,11 @@ import { List, WindowScroller } from 'react-virtualized'
 // import VirtualScroll from 'react-virtual-scroll'
 import PropTypes from 'prop-types';
 import { search } from 'redux-search/dist/commonjs/actions';
+import ResControls from '../../../../../containers/resControlls'
 
 class Widget extends Component {
 
+  
 
   static propTypes = {
     generateData: PropTypes.func.isRequired,
@@ -18,13 +20,21 @@ class Widget extends Component {
     recordsMap: PropTypes.any.isRequired,
     rowRenderer: PropTypes.any.isRequired,
     searchData: PropTypes.func.isRequired,
-    title: PropTypes.string.isRequired  
+    title: PropTypes.string.isRequired,  
+    addNotesData: PropTypes.func.isRequired,
+    notesContent: PropTypes.string.isRequired,
+  }
+
+  handleChange = (e) => {
+    const addNotesData = this.props
+    const notesContent = e.target.value
+     return addNotesData (notesContent)
   }
 
 
 
    render () {
-     const {recordIds, title, generateData, rowRenderer, recordsMap, searchData } = this.props
+     const {recordIds, title, generateData, rowRenderer, recordsMap, searchData, notesContent } = this.props
     const totalSize = recordsMap instanceof Immutable.Collection
       ? recordsMap.size
       : Object.keys(recordsMap).length
@@ -55,6 +65,18 @@ class Widget extends Component {
             onChange={event => searchData(event.target.value)}
             placeholder='Search..'
           />
+
+        <textarea 
+          // onChange={addNotesData)}
+          // onChange= {this.handleChange}
+          value={notesContent}
+          />
+        
+     
+        <div className="main__controls">
+            <ResControls  notesContent = {notesContent} />
+        </div>
+      
         </div>
         {/* <WindowScroller
           className={styles.VirtualScroll}

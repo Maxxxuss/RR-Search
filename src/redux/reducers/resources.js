@@ -62,7 +62,7 @@ export const actions = {
       dispatch(actions.clearImmutableData())
       const immutableMap = {}
       for (var i = 0; i < 10; i++) {
-        let id = faker.random.uuid()
+        let id = faker.random.uuid()  
         immutableMap[id] = new Record({
           id: id,
           name: faker.name.findName(),
@@ -77,25 +77,23 @@ export const actions = {
   },
 
   generateNotesData () {
-    return (dispatch, getState) => {
-      dispatch(actions.clearData())
+
+    return (dispatch, {state, action, e}) => {
 
       const notesData = {}
-      for (var i = 0; i < 10; i++) {
-        let id = faker.random.uuid()
-        notesData[id] = {
-          id: id,
-          name: faker.name.findName(),
-          title: faker.name.title()
-        }
+      let id = faker.random.uuid()
+      notesData [id] = {
+        id: id, 
+        name: "Robert",
+        titel: "random", 
+        notesContent: "", 
       }
       dispatch({
-        type: resActionTypes.setNotesData,
+        type: resActionTypes.addNotesData, 
         payload: notesData
       })
     }
   },
-
 
 
   searchData: createSearchAction('map'),
@@ -119,12 +117,9 @@ export const actionHandlers = {
   [resActionTypes.clearData] (state) {
     return state.set('notesMap', {})
   },
-  [resActionTypes.setNotesData] (state, { payload }): State {
+  [resActionTypes.addNotesData] (state, { payload }): State {
     return state.set('notesMap', payload)
   },
-
-
-
 }
 
 export const reducer = (state = new State(), action)=> {
